@@ -1,0 +1,23 @@
+from flask import Flask, jsonify
+app = Flask(__name__)
+heart = [
+
+        {
+            "heart_id": ["0401"],
+            "date" : ["09/21/2022"],
+            "heart_rate" : ["120"]
+        }
+]
+
+@app.route('/heart', methods=['GET'])
+def getheart():
+    return jsonify(heart)
+
+@app.route('/heart', methods=['POST'])
+def addheart():
+    heart = request.get_json()
+    heart.append(heart)
+    return{'id': len(heart)},200
+
+if __name__ == '__main__':
+    app.run()
